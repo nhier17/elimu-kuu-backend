@@ -2,8 +2,12 @@ import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 
+import subjectsRouter from "./routes/subjects";
+
 const app = express();
 const PORT = 5000;
+
+if (!process.env.FRONTEND_URL) throw new Error("Missing environment variable");
 
 //cors options
 const corsOptions = {
@@ -15,6 +19,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(express.json());
+
+//routes
+app.use("/api/subjects", subjectsRouter);
 
 app.get("/", (req, res) => {
     res.send("Backend server is running!");
