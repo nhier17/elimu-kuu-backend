@@ -55,7 +55,14 @@ const securityMiddleware = async (
         if (decision.isDenied() && decision.reason.isBot()) {
             return res.status(403).json({
                 error: "Forbidden",
-                message: "Request blocked by security policy",
+                message: "Automated requests are not allowed.",
+            });
+        }
+
+        if (decision.isDenied() && decision.reason.isShield()) {
+            return res.status(403).json({
+                error: "Forbidden",
+                message: "Request blocked by security policy.",
             });
         }
 
