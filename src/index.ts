@@ -4,6 +4,8 @@ import cors from "cors";
 
 import subjectsRouter from "./routes/subjects";
 import securityMiddleware from "./middleware/security";
+import {toNodeHandler} from "better-auth/node";
+import {auth} from "./lib/auth";
 
 const app = express();
 const PORT = 5000;
@@ -18,6 +20,8 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+
+app.all('/api/auth/*splat', toNodeHandler(auth));
 
 app.use(express.json());
 
