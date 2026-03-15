@@ -7,6 +7,7 @@ import cors from "cors";
 import subjectsRouter from "./routes/subjects";
 import classesRouter from "./routes/classes";
 import usersRouter from "./routes/users";
+import departmentsRouter from "./routes/departments";
 import securityMiddleware from "./middleware/security";
 import {toNodeHandler} from "better-auth/node";
 import {auth} from "./lib/auth";
@@ -34,6 +35,7 @@ app.use(securityMiddleware)
 //routes
 app.use("/api/subjects", subjectsRouter);
 app.use("/api/classes", classesRouter);
+app.use("/api/departments", departmentsRouter);
 app.use("/api/users", usersRouter);
 
 app.get("/", (req, res) => {
