@@ -1,3 +1,4 @@
+import "dotenv/config";
 import AgentAPI from "apminsight";
 AgentAPI.config()
 
@@ -14,7 +15,7 @@ import {toNodeHandler} from "better-auth/node";
 import {auth} from "./lib/auth";
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 if (!process.env.FRONTEND_URL) throw new Error("Missing environment variable");
 
